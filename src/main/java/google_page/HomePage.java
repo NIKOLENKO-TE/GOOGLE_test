@@ -18,7 +18,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//button[.//div[text()='Принять все']]")
     @FindBy(xpath = "//button[contains(.,'Принять все')]")
   */
-  @FindBy(xpath = "//div[text()='Принять все']")
+  @FindBy(xpath = "//div[text()='Accept all']")
   public WebElement acceptAllButton;
 
   // @FindBy(name = "q") // [name='q'] CSS
@@ -29,12 +29,12 @@ public class HomePage extends BasePage {
   @FindBy(id = "search")
   public WebElement searchResultField;
 
-  @FindBy(xpath = "//*[@id='search']//*[contains(text(), 'Результаты поиска')]")
+  @FindBy(xpath = "//*[@id='search']//*[contains(text(), 'Search Results')]")
   public WebElement searchResultText;
 
 
   public List<WebElement> getElements() {
-    return driver.findElements(By.xpath("//*[@id='search']//*[contains(text(), 'котики')]"));
+    return driver.findElements(By.xpath("//*[@id='search']//*[contains(text(), 'cats')]"));
   }
   public static void printSearchResult() {
     if (homePage.getElements().isEmpty()) {
@@ -43,7 +43,7 @@ public class HomePage extends BasePage {
       for (WebElement element : homePage.getElements()) {
         String text = element.getText();
         if (text.isEmpty()) {
-          System.out.println("Текст элемента пуст");
+          System.out.println("Test failed: element text is empty");
         } else {
           System.out.println(text);
         }
