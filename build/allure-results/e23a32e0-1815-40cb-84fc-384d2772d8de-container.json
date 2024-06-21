@@ -1,0 +1,1 @@
+{"uuid":"e23a32e0-1815-40cb-84fc-384d2772d8de","name":"Тестовый класс для проверки домашней страницы GOOGLE.COM","children":["e339bbad-8c03-4037-b58d-96fae3bdab1b"],"befores":[],"afters":[{"name":"afterAll","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1718963882974,"stop":1718963882974}],"start":1718963877909,"stop":1718963882976}

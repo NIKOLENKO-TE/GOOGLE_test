@@ -1,86 +1,48 @@
 package core;
 
-import google_page.*;
+import com.google.common.io.Files;
+import google_page.HomePage;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
-public class AppManager {
+public class AppManager extends BasePage {
+
+  public static WebDriver driver;
+  private static final Duration WAIT_MILLIS_WAIT = Duration.ofMillis(500);
+  private final String browser;
   public static BasePage basePage;
   public static HomePage homePage;
-  public static AlertsPage alertsPage;
-  public static SidePanel sidePanel;
-  public static BrowserWindowsPage browserWindowsPage;
-  public static SelectMenuPage selectMenuPage;
-  public static TextBoxPage textBoxPage;
-  public static ElementsPage elementsPage;
-  public static ButtonsPage buttonsPage;
-  public static PracticeFormPage practiceFormPage;
-
-  public static WebDriver driver; // Объявляем драйвер как статическое поле, чтобы иметь к нему доступ из любого места программы
-  private final String browser; // Объявляем переменную browser, чтобы хранить значение браузера
-  public static WebDriverWait wait; // Объявляем wait как статическое поле, чтобы иметь к нему доступ из любого места программы
-  public static final int WAIT_TIMEOUT = 5; // Объявляем константу WAIT_TIMEOUT, чтобы хранить значение таймаута ожидания
-
   public AppManager(String browser) {
     this.browser = browser;
   }
 
+
   public void init() {
-    switch (browser.toLowerCase()) {
-      case "firefox":
-        driver = new FirefoxDriver();
-        break;
-      case "edge":
-        driver = new EdgeDriver();
-        break;
-      case "safari":
-        driver = new SafariDriver();
-        break;
-      case "chrome":
-      default:
-        driver = new ChromeDriver();
+    if (browser.equalsIgnoreCase("chrome")) {
+      driver = new ChromeDriver();
+    } else if (browser.equalsIgnoreCase("firefox")) {
+      driver = new FirefoxDriver();
+    } else if (browser.equalsIgnoreCase("edge")) {
+      System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
+      driver = new EdgeDriver();
+    } else {
+      throw new IllegalArgumentException("Unsupported browser: " + browser);
     }
-    wait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT)); // Инициализируем wait с таймаутом ожидания в 5 секунд
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIMEOUT)); // Устанавливаем неявное ожидание до 5 секунд
-    driver.manage().window().maximize();
-    // ! Инициализируем объект basePage и др., чтобы иметь доступ к методам этих классов из любого места программы
     basePage = new BasePage();
     homePage = new HomePage();
-    sidePanel = new SidePanel();
-    alertsPage = new AlertsPage();
-    browserWindowsPage = new BrowserWindowsPage();
-    selectMenuPage = new  SelectMenuPage();
-    textBoxPage = new TextBoxPage();
-    elementsPage = new ElementsPage();
-    buttonsPage = new ButtonsPage();
-    practiceFormPage = new PracticeFormPage();
-
-    // ! Открываем домашнюю страницу как первый шаг в каждом тесте
-    basePage.open(homePage.HOME_PAGE_URL);
+    driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(WAIT_MILLIS_WAIT);
   }
- // Метод для завершения работы драйвера
- public void stop() {
-   // * Для владельцев ОС Windows, у которых не закрывается chromedriver.exe после завершения тестов и дальше висит в Диспетчере задач
-   if (driver != null) {
-     driver.quit();
-   }
-   try {
-     String[] cmdarray = {"taskkill", "/F", "/IM", "chromedriver.exe", "/T"};
-     Runtime.getRuntime().exec(cmdarray);
-   } catch (IOException ignored) {
-   }
- }
+
+  public void stop() {
+    driver.quit();
+  }
 }
-
-
-
-
-
-

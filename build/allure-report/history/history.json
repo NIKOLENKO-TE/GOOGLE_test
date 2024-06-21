@@ -1,0 +1,1 @@
+{"640fa5d38ca8690fb448a8a64441fd48":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"df09da08eaae843b","status":"failed","statusDetails":"Текст [Результаты поиска222] не был найден в элементе [h1] в течение [1000] миллисекунд","time":{"start":1718963878022,"stop":1718963882873,"duration":4851}}]}}

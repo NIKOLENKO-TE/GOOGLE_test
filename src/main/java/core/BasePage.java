@@ -3,6 +3,7 @@ package core;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,7 +63,7 @@ public class BasePage {
     click(element);
   }
 
-  @Step("Вводим текст: [{text}] в элемент: [{element}]")
+  @Step("Вводим текст: [{text}]")
   public void type(WebElement element, String text) {
     if (text != null) {
       click(element);
@@ -72,40 +73,17 @@ public class BasePage {
   }
 
   // Метод, который будет искать текст в локаторе
-  public boolean shouldHaveText(WebElement element, String text, int timeout) {
-    LOGGER.info("ТЕКСТ ПРОВЕРЕН: [" + text + "] В ЭЛЕМЕНТЕ: [" + element.getTagName() + "]");
-    return new WebDriverWait(driver, Duration.ofSeconds(timeout)).until(ExpectedConditions.textToBePresentInElement(element, text));
+  public void shouldHaveText(WebElement element, String text, int timeout) {
+    LOGGER.info("ТЕКСТ ПРОВЕРЕН: [{}] В ЭЛЕМЕНТЕ: [{}]", text, element.getTagName());
+    try {
+      new WebDriverWait(driver, Duration.ofMillis(timeout)).until(ExpectedConditions.textToBePresentInElement(element, text));
+    } catch (TimeoutException e) {
+      LOGGER.error("Текст [{}] не был найден в элементе [{}] в течение [{}] миллисекунд", text, element.getTagName(), timeout);
+      throw new AssertionError("Текст [" + text + "] не был найден в элементе [" + element.getTagName() + "] в течение [" + timeout + "] миллисекунд");
+    }
   }
 
-  // Метод, который будет отключать рекламу и её блоки
-  public void hideAds() {
-    js.executeScript(
-            "var hideAds = function() {" +
-                    "document.getElementById('adplus-anchor').style.display='none';" +
-                    "document.getElementById('fixedban').style.display='none';" +
-                    "document.getElementById('Ad.Plus-300x250-1').style.display='none';" +
-                    "document.getElementById('Ad.Plus-300x250-2').style.display='none';" +
-                    "document.getElementById('Ad.Plus-970x250-1').style.display='none';" +
-                    "document.getElementById('Ad.Plus-970x250-2').style.display='none';" +
-                    "document.getElementById('RightSide_Advertisement').style.display='none';" +
-                    "document.getElementById('mys-wrapper').style.display='none';" +
-                    "document.getElementById('bnr').style.display='none';" +
-                    "document.getElementById('banner').style.display='none';" +
-                    "document.getElementById('bannerB').style.display='none';" +
-                    "document.querySelectorAll('[class*=\"-bannerB\"], [class*=\"-banner\"], .ad-card').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('.ns-vwfjj-e-1.top-panel').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('.ns-jfama-l-bannerB.ns-jfama-v-0').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('.ns-jm633-l-bannerB.ns-jm633-v-0').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('.ad-container, .Google-Ad, .ad, .ads, .advert, .advertisement, .amp-animate, .i-amphtml-layout-container, .mys-wrapper, [class*=\"-banner\"]').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('#gwd-ad .gwd-page-container, #gwd-ad .gwd-page-wrapper, #gwd-ad .gwd-page-content, #gwd-ad .gwd-lightbox, #gwd-ad .gwd-play-animation, #gwd-ad .event-2-animation, #gwd-ad .gwd-gen-1igqgwdanimation, #gwd-ad .Logo_Start, #gwd-ad .Netto_Logo, #gwd-ad .gwd-gen-1rjsgwdanimation, #gwd-ad .gwd-gen-11gugwdanimation, #gwd-ad .gwd-gen-1pc9gwdanimation, #gwd-ad .gwd-gen-5a2ygwdanimation, #gwd-ad .gwd-gen-jn8rgwdanimation, #gwd-ad .gwd-gen-yllngwdanimation, #gwd-ad .gwd-gen-cc8ygwdanimation, #gwd-ad .gwd-gen-ixqigwdanimation, #gwd-ad .gwd-gen-krlngwdanimation, #gwd-ad .gwd-gen-11tigwdanimation, #gwd-ad .gwd-gen-1lq3gwdanimation, #gwd-ad .gwd-gen-1pc9gwdanimation').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('script[src*=\"googletagservices.com\"], script[src*=\"adsbygoogle.js\"]').forEach(element => element.remove());" +
-                    "document.querySelectorAll('div[data-google-query-id]').forEach(element => element.style.display = 'none');" +
-                     "document.querySelectorAll('.col-12.mt-4.col-md-6 > div:nth-child(1)').forEach(element => element.style.display = 'none');" +
-                     "document.querySelectorAll('.col-12.mt-4.col-md-6 > div:nth-child(3)').forEach(element => element.style.display = 'none');" +
-                    "document.querySelectorAll('.col-12.mt-4.col-md-6 > div:nth-child(1)').forEach(element => element.remove());" +
-                    "document.querySelectorAll('.col-12.mt-4.col-md-6 > div:nth-child(3)').forEach(element => element.remove());" +
-                    "};" +
-                    "setInterval(hideAds, 0);"
-    );
+  public void pressEnter() {
+    new Actions(driver).sendKeys(Keys.ENTER).perform();
   }
 }
