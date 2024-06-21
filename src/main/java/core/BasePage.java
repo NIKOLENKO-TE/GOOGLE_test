@@ -52,7 +52,7 @@ public class BasePage {
     return new byte[0];
   }
 
-  @Step("Кликаем по элементу: [{name}]")
+  @Step("Кликаем по элементу: [{element}]")
   public void click(WebElement element) {
     element.click();
   }

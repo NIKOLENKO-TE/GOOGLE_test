@@ -17,7 +17,9 @@ public class HomePageTests extends BaseTest {
 
   @BeforeEach
   public void precondition() {
-    basePage.open(HOME_PAGE_URL);
+    basePage
+        .open(HOME_PAGE_URL)
+        .click(homePage.acceptAllButton);
   }
 
   @Feature("Find {Котики} on {Google.com}") // * Заголовок в отчете Allure
@@ -29,8 +31,8 @@ public class HomePageTests extends BaseTest {
     basePage.type(homePage.searchBar, "Котики");
     basePage.pressEnter();
     assertNotNull(homePage.searchResultField, "Поле 'Результаты поиска' не найдены");
-    //assertNotNull(homePage.searchResultText, "Текст 'Результаты поиска' не найден");
-    //basePage.shouldHaveText(homePage.searchResultText, "Результаты поиска",5000);
+    assertNotNull(homePage.searchResultText, "Текст 'Результаты поиска' не найден");
+    basePage.shouldHaveText(homePage.searchResultText, "Результаты поиска",5000);
     printSearchResult();
   }
 }
