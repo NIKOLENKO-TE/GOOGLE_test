@@ -38,7 +38,8 @@ public class BasePage {
   @Step("Получаем скриншот ошибки и прикрепляем к отчету Allure")
   @Attachment(value = "Screenshot", type = "image/png")
   public static byte[] takeScreenshot() {
-    if (driver instanceof TakesScreenshot ts) {
+    if (driver instanceof TakesScreenshot) {
+      TakesScreenshot ts = (TakesScreenshot) driver;
       File scrFile = ts.getScreenshotAs(OutputType.FILE);
       Path destination = Paths.get("./screenshots", scrFile.getName());
       try {
