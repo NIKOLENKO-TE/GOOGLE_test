@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">1</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">4.849s</div>
+<div class="counter">3.810s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">0%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,56 +61,13 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
+<a href="#tab0">Tests</a>
 </li>
 <li>
-<a href="#tab1">Tests</a>
-</li>
-<li>
-<a href="#tab2">Standard output</a>
+<a href="#tab1">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<div class="test">
-<a name="searchTest()[1]"></a>
-<h3 class="failures">Find {Котики} on {Google.com} :: итерация [1] из [1]</h3>
-<span class="code">
-<pre>java.lang.AssertionError: Текст [Результаты поиска222] не был найден в элементе [h1] в течение [1000] миллисекунд
-	at core.BasePage.shouldHaveText(BasePage.java:82)
-	at demoQA_tests.HomePageTests.searchTest(HomePageTests.java:33)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
-	at io.qameta.allure.junit5.AllureJunit5.interceptTestTemplateMethod(AllureJunit5.java:59)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
-	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base/java.util.stream.IntPipeline$1$1.accept(IntPipeline.java:180)
-	at java.base/java.util.stream.Streams$RangeIntSpliterator.forEachRemaining(Streams.java:108)
-	at java.base/java.util.Spliterator$OfInt.forEachRemaining(Spliterator.java:711)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
-	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-</pre>
-</span>
-</div>
-</div>
-<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -122,22 +79,40 @@
 </tr>
 </thead>
 <tr>
-<td class="failures">Find {Котики} on {Google.com} :: итерация [1] из [1]</td>
-<td class="failures">searchTest()[1]</td>
-<td class="failures">4.849s</td>
-<td class="failures">failed</td>
+<td class="success">Find {Котики} on {Google.com} :: итерация [1] из [1]</td>
+<td class="success">searchTest()[1]</td>
+<td class="success">3.810s</td>
+<td class="success">passed</td>
 </tr>
 </table>
 </div>
-<div id="tab2" class="tab">
+<div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>11:57:58.040 [Test worker] INFO core.BaseTest -- ========================= searchTest ============================
-11:57:58.047 [Test worker] INFO core.BaseTest -- START TEST: Find {Котики} on {Google.com} :: итерация [1] из [1]
-11:58:01.388 [Test worker] INFO core.BasePage -- ТЕКСТ ПРОВЕРЕН: [Результаты поиска222] В ЭЛЕМЕНТЕ: [h1]
-11:58:02.532 [Test worker] ERROR core.BasePage -- Текст [Результаты поиска222] не был найден в элементе [h1] в течение [1000] миллисекунд
-11:58:02.864 [Test worker] ERROR core.BaseTest -- FAILED TEST: [searchTest], TIME for test execution: [3189] ms
-11:58:02.974 [Test worker] INFO core.BaseTest -- **************************** ВСЕ ТЕСТЫ ЗАВЕРШЕНЫ ****************************
+<pre>12:28:27.873 [Test worker] INFO core.BaseTest -- ========================= searchTest ============================
+12:28:27.880 [Test worker] INFO core.BaseTest -- START TEST: Find {Котики} on {Google.com} :: итерация [1] из [1]
+12:28:31.189 [Test worker] INFO core.BasePage -- ТЕКСТ ПРОВЕРЕН: [Результаты поиска] В ЭЛЕМЕНТЕ: [h1]
+Текст элемента пуст
+Какие есть милые котики?
+Текст элемента пуст
+Что говорят котики?
+Текст элемента пуст
+Почему котики успокаивают?
+Текст элемента пуст
+Лучшие идеи (900+) доски «Милые котики
+› милые-котики
+Текст элемента пуст
+› photos › котики
+Текст элемента пуст
+Милые котики
+котики
+› tag › котики
+Текст элемента пуст
+котики
+котики
+котики
+12:28:31.661 [Test worker] INFO core.BaseTest -- PASSED TEST: [searchTest], TIME for test execution: [2113] ms
+12:28:31.770 [Test worker] INFO core.BaseTest -- **************************** ВСЕ ТЕСТЫ ЗАВЕРШЕНЫ ****************************
 </pre>
 </span>
 </div>
@@ -149,7 +124,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 21 июн. 2024 г., 11:58:03</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 21 июн. 2024 г., 12:28:32</p>
 </div>
 </div>
 </body>

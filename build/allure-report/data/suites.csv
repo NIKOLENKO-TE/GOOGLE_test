@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Fri Jun 21 11:57:58 CEST 2024","Fri Jun 21 11:58:02 CEST 2024","4851","","Тестовый класс для проверки домашней страницы GOOGLE.COM","","demoQA_tests.HomePageTests","searchTest","Find {Котики} on {Google.com} Find {Котики} on {Google.com} :: итерация [1] из [1]",""
+"passed","Fri Jun 21 12:28:27 CEST 2024","Fri Jun 21 12:28:31 CEST 2024","3814","","Тестовый класс для проверки домашней страницы GOOGLE.COM","","demoQA_tests.HomePageTests","searchTest","Find {Котики} on {Google.com} Find {Котики} on {Google.com} :: итерация [1] из [1]",""
