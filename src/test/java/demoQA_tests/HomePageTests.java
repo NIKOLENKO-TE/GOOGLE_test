@@ -17,7 +17,7 @@ public class HomePageTests extends BaseTest {
 
   @BeforeEach
   public void precondition() {
-    basePage.open(HOME_PAGE_URL).click(homePage.acceptAllButton);
+    basePage.open(HOME_PAGE_URL);
   }
 
   @Feature("Find {Котики} on {Google.com}") // * Заголовок в отчете Allure
