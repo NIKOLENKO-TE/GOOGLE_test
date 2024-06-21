@@ -60,6 +60,8 @@ public class BasePage {
 
   @Step("Кликаем по элементу с JS: [{element}]")
   protected void clickJS(WebElement element, int x, int y) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2)); // ожидание в течение 10 секунд
+    wait.until(ExpectedConditions.elementToBeClickable(element)); // ожидание, пока элемент не станет доступным для клика
     js.executeScript("window.scrollBy(" + x + "," + y + ")");
     click(element);
   }
